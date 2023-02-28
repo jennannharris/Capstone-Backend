@@ -22,6 +22,7 @@ server.get("/", (req, res) => {
 });
 
 server.post("/newPost", async (req, res) => {
+  console.log(req.session);
   if (!req.session.user) {
     res
       .status(401)
