@@ -95,23 +95,16 @@ server.get("/authStatus", async (req, res) => {
   }
 });
 
-const serverStarted = async () => {
-  const user = await User.findOne({
-    where: { email: "jennannharris@hotmail.com" },
-  });
 
-  if (!user) {
-    console.log(
-      await User.create({
-        email: "jennannharris@hotmail.com",
-        firstName: "Jen",
-        password: bcrypt.hashSync("sassy", 10),
-      })
-    );
-  }
-};
-serverStarted();
+let port = 3001; 
+if (process.env.PORT) {
+	port = process.env.PORT;
+}
 
-server.listen(3001, () => {
-  console.log("Server running on port 3001");
+//#9 run express API server in background to listen for incoming requests
+server.listen(port, () => {
+  console.log("Server Running");
+
 });
+
+  
